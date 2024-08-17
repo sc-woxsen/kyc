@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know Your Campus - Woxsen University</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+        .hidden {
+            display: none;
+        }
+        .typed-cursor {
+            font-size: 3rem;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        .multi-color-cursor {
+            animation: multiColor 1s infinite;
+        }
+        @keyframes multiColor {
+            0% { color: red; }
+            25% { color: yellow; }
+            50% { color: blue; }
+            75% { color: green; }
+            100% { color: red; }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #fff, #fff);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .mist {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/random/1920x1080?mist') center center / cover no-repeat;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .trail {
+            position: fixed;
+            pointer-events: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 60%);
+            animation: fade 0.5s forwards;
+        }
+        @keyframes fade {
+            to {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+
+        .expandable-content {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .expandable-content.expanded {
+            display: block;
+        }
+        .instagram-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.instagram-item {
+    flex: 1 1 calc(33.333% - 1rem);
+    max-width: 100%;
+}
+
+.instagram-media {
+    width: 100% !important; 
+    margin: 0 auto; 
+}
+
+@media (max-width: 768px) {
+    .instagram-item {
+        flex: 1 1 calc(50% - 1rem); 
+    }
+}
+
+@media (max-width: 480px) {
+    .instagram-item {
+        flex: 1 1 100%; 
+    }
+}
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui-theme-default.css" />
+</head>
+<body class="font-sans leading-normal tracking-normal">
+
+    <div id="pre-landing" class="h-screen flex flex-col justify-center items-center bg-black text-white">
+        <h1 class="text-9xl font-bold mb-8"><span id="kyc-text"></span><span class="typed-cursor multi-color-cursor">|</span></h1>
+        <p class="text-2xl mb-4">Verify Yourself</p>
+        <input id="email-input" type="email" placeholder="Enter your Name" class="bg-gray-800 text-white py-2 px-4 rounded">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onclick="verifyEmail()">Submit</button>
+        <p id="error-message" class="text-red-500 mt-4 hidden">Please enter a valid name.</p>
+    </div>
+
+    <div id="main-content" class="hidden">
+
+        <header class="bg-cover bg-center h-screen relative" style="background-image: url('#');  filter: grayscale(100%);">
+            <div class="mist"></div>
+            <div class="h-full flex flex-col justify-center items-center relative z-10 hero-content">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 gradient-text">Woxsen University</h1>
+                <p class="text-2xl md:text-4xl mb-8 gradient-text">Know Your Campus</p>
+           <!--     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="scrollToSection('map')">Start Tour</button> -->
+            </div>
+        </header>
+        <div class="instagram-container">
+            <div class="instagram-item">
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C-k7Vzmqo7g/?utm_source=ig_embed&utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                </blockquote>
+            </div>
+            <div class="instagram-item">
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C-k5m5JzkoQ/?utm_source=ig_embed&utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                </blockquote>
+            </div>
+            <div class="instagram-item">
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C-k4a7XKq_p/?utm_source=ig_embed&utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                </blockquote>
+            </div>
+        </div>
+        <script async onerror="var a=document.createElement('script');a.src='https://iframely.net/files/instagram_embed.js';document.body.appendChild(a);" src="https://www.instagram.com/embed.js"></script>
+        <br>
+       <!-- <section id="map" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold mb-8 text-center gradient-text">Explore Your Campus</h2>
+                <div class="relative overflow-hidden">
+                    <img src="assets/img/map.png" alt="Campus Map" class="w-full h-auto">
+                </div>
+            </div>
+        </section>
+
+        <section id="tour" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-8 gradient-text">Campus Tour</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  Campus Map Photo -->
+                  <!--  <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <img src="kyc/admin lawn.jpg" alt="Campus Map" class="w-full h-auto rounded">
+                        <p class="mt-4 text-gray-300">Admin Lawn</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <img src="kyc/woxsen.jpg" alt="Campus Map" class="w-full h-auto rounded">
+                        <p class="mt-4 text-gray-300">Woxsen</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <img src="kyc/oval tree.jpg" alt="Campus Map" class="w-full h-auto rounded">
+                        <p class="mt-4 text-gray-300">Oval Tree</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <img src="kyc/fountain .jpg" alt="Campus Map" class="w-full h-auto rounded">
+                        <p class="mt-4 text-gray-300">Fountain</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <img src="kyc/amphi.jpg" alt="Campus Map" class="w-full h-auto rounded">
+                        <p class="mt-4 text-gray-300">Amphi</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <img src="kyc/library lan.jpg" alt="Campus Map" class="w-full h-auto rounded">
+                        <p class="mt-4 text-gray-300">Library Lawn</p>
+                    </div>-->
+                    <!-- Example Photo
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <img src="https://woxsen.edu.in/uploads/a20230612062101.webp" alt="Library" class="w-full h-auto rounded">
+                        <button class="mt-4 text-gray-300 font-bold focus:outline-none" onclick="toggleDetails('location1')">LIBRARY</button>
+                        <div id="location1" class="expandable-content">
+                            <p class="mt-4 text-gray-300">Heralding a new generation of self-learning centres in higher education, Woxsen University's brand-new Library and Self-Learning Facility - Vithal Gandhi Centre, provides students access to over 18,000 offline and 33000+ online resources.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <img src="https://woxsen.edu.in/uploads/a20240330032415.webp" alt="Library" class="w-full h-auto rounded">
+                        <button class="mt-4 text-gray-300 font-bold focus:outline-none" onclick="toggleDetails('location2')">CLASSROOMS</button>
+                        <div id="location2" class="expandable-content">
+                            <p class="mt-4 text-gray-300">In recent decades, advancements in educational theories and paradigms, coupled with technological progress, have necessitated the transformation of learning spaces within higher education institutions. Woxsen University staunchly upholds the belief that classrooms serve as the tangible embodiment of educational pedagogy.</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        
+   
+
+
+        <section id="sports" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-8 gradient-text">Activity</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Online Challenge</h3>
+                        <p class="text-gray-300">17th August - SC X All Clubs</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Online Challenge</h3>
+                        <p class="text-gray-300">18th August - SC X All Clubs</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Online Challenge</h3>
+                        <p class="text-gray-300">19th August - SC X All Clubs</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Online Challenge</h3>
+                        <p class="text-gray-300">20th August - SC X All Clubs</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Documentary Screening</h3>
+                        <p class="text-gray-300">21th August - SC X -Legal eagle and Club Genesis - Room - 015 and 018 (New Academic Block )</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Familiarisation of SC and clubs (School of Law)</h3>
+                        <p class="text-gray-300">21th August - SC - LT's</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Janmashtami Celebrations</h3>
+                        <p class="text-gray-300">22nd August - SC X Jashn - Admin</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">UNO science Edition</h3>
+                        <p class="text-gray-300">23rd August - SC X Spectrum - Library Terrace</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Denim/T- shirt Upcycling Event</h3>
+                        <p class="text-gray-300">24th August - SC X Fashion Club - Blu pool area</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Movie Screening</h3>
+                        <p class="text-gray-300">25th August - SC X Film club - 013 and 014</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Campus Photography Hunt</h3>
+                        <p class="text-gray-300">26th August - SC X Paparazzi Club/Sustainability Club - Around the Campus</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">A game of Charades</h3>
+                        <p class="text-gray-300">26th August - SC X Film club - Green area near LT's or clay workshop</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Chai Biscuit and What Else ?</h3>
+                        <p class="text-gray-300">27th August - SC X Ignite - Cup of Joe</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Book of the month and Talk</h3>
+                        <p class="text-gray-300">28th August - SC X literature and Debate club - Library Terrace</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Sketch With a Stranger</h3>
+                        <p class="text-gray-300">29th August - SC X Product Design club and Skribble Club - Admin</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Art Therapy 2.0 And Artist of the Month </h3>
+                        <p class="text-gray-300">30th August - SC X Skribble Club and Communication Design Club - Admin</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Familiarisation of SC and clubs (BBA) </h3>
+                        <p class="text-gray-300">30th August - SC X All Clubs - LT's</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Bonfire (A game of Chits)</h3>
+                        <p class="text-gray-300">30th August - SC X All Clubs - Amphitheatre</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Familiarisation of SC and clubs(SOT) (SOAP) </h3>
+                        <p class="text-gray-300">31th August - SC X All Clubs - LT's</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Short film Screenings</h3>
+                        <p class="text-gray-300">31th August - SC X Film Clubs - 013 and 014</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Plantation Drive and Dance performances</h3>
+                        <p class="text-gray-300">1st September - SC X Sustainability Club and Just Naach - Admin</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Woxsen Olympics</h3>
+                        <p class="text-gray-300">2nd September - RACE</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">Craft Venture</h3>
+                        <p class="text-gray-300">3rd September - SC X Interior Club - BLU Pool Area</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 gradient-text">CLUB EXPO (KYC HUNT)</h3>
+                        <p class="text-gray-300">4th September - SC X All clubs - All around the Campus</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-gray-900 py-10">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-2xl font-bold mb-4 gradient-text">Contact Us</h3>
+                <p class="mb-4">Follow us on social media:</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/showcase/woxsen-university-student-council/" class="text-blue-500 hover:text-blue-700" target="_blank">LinkedIn</a>
+                    <a href="https://www.instagram.com/woxsen_student_council/" class="text-pink-500 hover:text-pink-700" target="_blank">Instagram</a>
+                </div>
+                <p class="mt-6 text-gray-500">&copy; 2024 Woxsen University Student Council. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var typed = new Typed("#kyc-text", {
+                strings: ["KYC"],
+                typeSpeed: 100,
+                showCursor: true,
+                cursorChar: '|',
+                onComplete: function() {
+                    document.getElementById("email-input").focus();
+                }
+            });
+
+       
+            // GSAP animations
+            gsap.from("header", { opacity: 0, duration: 1.5, y: -50 });
+            gsap.from("#map", { opacity: 0, duration: 1.5, x: -50, scrollTrigger: "#map" });
+            gsap.from("#reels", { opacity: 0, duration: 1.5, x: 50, scrollTrigger: "#reels" });
+            gsap.from("#testimonials", { opacity: 0, duration: 1.5, y: 50, scrollTrigger: "#testimonials" });
+            gsap.from("#sports", { opacity: 0, duration: 1.5, y: 50, scrollTrigger: "#sports" });
+        });
+
+        function verifyEmail() {
+            const email = document.getElementById('email-input').value;
+            const errorMessage = document.getElementById('error-message');
+            const mainContent = document.getElementById('main-content');
+            const preLanding = document.getElementById('pre-landing');
+
+            if (email.endsWith('')) {
+                errorMessage.classList.add('hidden');
+                preLanding.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+            } else {
+                errorMessage.classList.remove('hidden');
+            }
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleDetails(id) {
+            const contents = document.querySelectorAll('.expandable-content');
+            contents.forEach(content => {
+                if (content.id !== id) {
+                    content.classList.remove('expanded');
+                }
+            });
+
+            const element = document.getElementById(id);
+            element.classList.toggle('expanded');
+        }
+
+        gsap.utils.toArray('.reveal').forEach((elem) => {
+            ScrollTrigger.create({
+                trigger: elem,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                onEnter: () => gsap.fromTo(elem, { opacity: 0 }, { opacity: 1, duration: 1 }),
+                onLeave: () => gsap.to(elem, { opacity: 0, duration: 1 }),
+                onEnterBack: () => gsap.fromTo(elem, { opacity: 0 }, { opacity: 1, duration: 1 }),
+                onLeaveBack: () => gsap.to(elem, { opacity: 0, duration: 1 }),
+            });
+        });
+    </script>
+</body>
+</html>
